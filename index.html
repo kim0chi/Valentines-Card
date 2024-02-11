@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Will you be my Valentine?</title>
+</head>
+<body>
+    <div class="valentines-day-card">
+        <input id="open" type="checkbox">
+        <label class="open" for="open"></label>
+        <div class="card-front">
+            <div class="note">Click to Open</div>
+        </div>
+
+        <div class="card-inside">
+            <div class="text-one">Will you be my</div>
+            <div class="heart"></div>
+            <div class="smile"></div>
+            <div class="eyes"></div>
+            <div class="buttons-container">
+                <button id="yesButton" class="yes-button" onclick="handleYesButtonClick()">Yes</button>
+                <button id="noButton" class="no-button" onclick="handleNoButtonClick()">No</button>
+                <img id="gif1" src="pixel-skull.gif" alt="GIF 1" class="gif-image" style="display: none;">
+                <img id="gif2" src="peach-goma-love-smooch-kiss.gif" alt="GIF 2" class="gif-image" style="display: none;">
+            </div>
+        </div>
+
+        <script>
+            const yesButton = document.getElementById('yesButton');
+            const noButton = document.getElementById('noButton');
+            const openCheckbox = document.getElementById('open');
+
+            function handleYesButtonClick() {
+                openCheckbox.checked = true;
+                document.querySelector('.card-inside').classList.add('cleared-card');
+                document.querySelector('.valentines-day-card').classList.add('bigger-card');
+                document.querySelector('.text-one').textContent = "I LOVE YOU SO MUCH MY VALENTINE!";
+                document.getElementById('gif1').style.display = 'block';
+                document.getElementById('gif2').style.display = 'block';
+                alert("YAY!!!!! MWAMWAMWAMWA");
+            }
+
+            function handleNoButtonClick() {
+                animateNo();
+                alert("WHY?!");
+                alert("I WANT YOU TO BE MY VALENTINE HUHU");
+            }
+
+            function animateYes() {
+                document.querySelector('.yes-button').classList.add('yes-button-move');
+            }
+
+            function animateNo() {
+                let randomX = Math.random() * (window.innerWidth - 100); // Adjust to avoid button going off-screen
+                let randomY = Math.random() * (window.innerHeight - 50); // Adjust to avoid button going off-screen
+                const noButton = document.querySelector('.no-button');
+                noButton.classList.add('no-button-move');
+                noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            }
+
+            function resetCard() {
+                document.querySelector('.card-inside').classList.remove('cleared-card');
+                document.querySelector('.valentines-day-card').classList.remove('bigger-card');
+                document.querySelector('.text-one').textContent = "Will you be my";
+            }
+
+            yesButton.addEventListener('click', handleYesButtonClick);
+            noButton.addEventListener('click', handleNoButtonClick);
+
+            openCheckbox.addEventListener('change', function () {
+                if (!this.checked) {
+                    resetCard();
+                }
+            });
+        </script>
+    </body>
+</html>
